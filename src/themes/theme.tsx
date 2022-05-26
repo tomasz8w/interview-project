@@ -5,6 +5,14 @@ export const theme = createTheme({
     fontFamily: ["Nunito"].join(","),
     fontSize: 14,
     fontWeightRegular: 600,
+    h6: {
+      fontSize: "18px",
+    },
+    caption: {
+      fontSize: "14px",
+      lineHeight: "16px",
+      color: "#9194A5",
+    },
   },
   palette: {
     primary: {
@@ -25,6 +33,24 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+          boxShadow: "none",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: "14px",
+          fontStyle: "normal",
+          textTransform: "none",
+          fontWeight: 600,
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {

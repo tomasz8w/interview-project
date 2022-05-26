@@ -1,16 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 
-import { AppRoute } from "routing/AppRoute.enum";
-import Header from "./Header";
+import { Header, ProductCard } from "./components";
 
 export const Products = () => {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box>
       <Header />
-      <Box sx={{ height: "100vh" }}>
-        <Link to={AppRoute.Login}> Login </Link>
+      <Box
+        sx={{
+          py: 6,
+          px: 6,
+          display: "grid",
+          justifyContent: "center",
+          gridTemplateColumns: mobile
+            ? "minmax(200px, 500px)"
+            : "repeat(4,minmax(200px,1fr))",
+          gridTemplateRows: mobile ? "repeat(4,400px)" : "repeat(2,400px)",
+          columnGap: 3,
+          rowGap: 4,
+        }}
+      >
+        <ProductCard />
+        <ProductCard />
       </Box>
     </Box>
   );

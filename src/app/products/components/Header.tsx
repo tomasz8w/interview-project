@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -14,15 +14,18 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { AppRoute } from "routing/AppRoute.enum";
+
 const Header = () => {
   const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <AppBar
+      position="static"
       sx={{
         justifyContent: "center",
-        height: sm ? "248px" : "144px",
+        height: mobile ? "248px" : "144px",
         transition: "height 0.2s",
       }}
     >
@@ -43,20 +46,21 @@ const Header = () => {
             flex: 4,
             display: "flex",
             flexDirection: "row",
-            flexWrap: sm ? "wrap" : "nowrap",
+            flexWrap: mobile ? "wrap" : "nowrap",
             gap: 2,
             py: 2,
-            order: sm ? 3 : 2,
-            flexBasis: sm ? "100%" : "",
+            order: mobile ? 3 : 2,
+            flexBasis: mobile ? "100%" : "",
           }}
         >
           <TextField
             size="small"
             label="Search"
-            fullWidth={sm}
+            fullWidth={mobile}
             InputProps={{
               endAdornment: <InputAdornment position="end">?</InputAdornment>,
             }}
+            sx={{ minWidth: "250px" }}
           />
           <FormGroup row sx={{ flexWrap: "nowrap" }}>
             <FormControlLabel control={<Checkbox />} label="Active" />
@@ -64,10 +68,12 @@ const Header = () => {
           </FormGroup>
         </Box>
         <Button
-          sx={{ ml: "auto", px: 4, order: sm ? 2 : 3 }}
+          component={Link}
+          to={AppRoute.Login}
+          sx={{ ml: "auto", px: 4, order: mobile ? 2 : 3 }}
           variant="outlined"
         >
-          Log in
+          Login
         </Button>
       </Box>
     </AppBar>
