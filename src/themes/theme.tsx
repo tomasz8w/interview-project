@@ -1,13 +1,10 @@
 import { createTheme } from "@mui/material";
-import { blue } from "@mui/material/colors";
 
 export const theme = createTheme({
   typography: {
     fontFamily: ["Nunito"].join(","),
     fontSize: 14,
-    h5: {
-      fontWeight: 600,
-    },
+    fontWeightRegular: 600,
   },
   palette: {
     primary: {
@@ -31,7 +28,6 @@ export const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          height: "144px",
           backgroundColor: "#fff",
           color: "#1A1B1D",
           boxShadow: "none",
@@ -42,7 +38,13 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           color: "#E0E2EA",
-          borderRadius: "20px",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: "#1A1B1D",
         },
       },
     },
@@ -50,6 +52,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "8px",
+          color: "#1A1B1D",
         },
       },
     },
