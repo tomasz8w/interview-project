@@ -32,6 +32,15 @@ export const theme = createTheme({
       default: "#F8F8FA",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1500,
+    },
+  },
   components: {
     MuiPaper: {
       styleOverrides: {
@@ -71,6 +80,17 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           color: "#1A1B1D",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "#E0E2EA",
+            },
+          },
         },
       },
     },
