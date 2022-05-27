@@ -7,14 +7,13 @@ import {
   FormGroup,
   InputAdornment,
   TextField,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 
+import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
+
 const SearchBox = () => {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { isMobile } = useMediaQueryMobile();
 
   return (
     <Box
@@ -22,17 +21,17 @@ const SearchBox = () => {
         flex: 4,
         display: "flex",
         flexDirection: "row",
-        flexWrap: mobile ? "wrap" : "nowrap",
+        flexWrap: isMobile ? "wrap" : "nowrap",
         gap: 2,
         py: 2,
-        order: mobile ? 3 : 2,
-        flexBasis: mobile ? "100%" : "",
+        order: isMobile ? 3 : 2,
+        flexBasis: isMobile ? "100%" : "",
       }}
     >
       <TextField
         size="small"
         label="Search"
-        fullWidth={mobile}
+        fullWidth={isMobile}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

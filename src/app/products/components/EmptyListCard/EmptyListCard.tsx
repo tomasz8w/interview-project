@@ -1,13 +1,6 @@
 import React from "react";
 
-import {
-  Box,
-  Card,
-  CardContent,
-  Icon,
-  SvgIcon,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Icon, Typography } from "@mui/material";
 
 import taskListIcon from "img/task-list-plain.svg";
 

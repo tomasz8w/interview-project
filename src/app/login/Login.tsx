@@ -1,17 +1,17 @@
 import React from "react";
 
-import { Box, ButtonBase, useMediaQuery, useTheme } from "@mui/material";
+import { Box, ButtonBase } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { AppRoute } from "routing/AppRoute.enum";
 import login from "img/login.png";
 import Logo from "app/common/components/Logo";
+import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 
 import { LoginForm, LoginWrapper } from "./components";
 
 export const Login = () => {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { isMobile } = useMediaQueryMobile();
 
   return (
     <LoginWrapper>
@@ -22,7 +22,7 @@ export const Login = () => {
           backgroundImage: `url(${login})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          display: mobile ? "none" : "block",
+          display: isMobile ? "none" : "block",
           maxWidth: "600px",
         }}
       />
@@ -33,7 +33,7 @@ export const Login = () => {
           flexDirection: "column",
           flex: 1,
           maxWidth: "500px",
-          mr: mobile ? "unset" : "auto",
+          mr: isMobile ? "unset" : "auto",
           px: 3,
           py: 5,
         }}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Pagination, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 
 import {
   Header,
@@ -8,10 +8,10 @@ import {
   ProductWrapper,
 } from "./components";
 import ProductModal from "./components/ProductModal";
+import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 
 export const Products = () => {
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { isMobile } = useMediaQueryMobile();
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -29,10 +29,10 @@ export const Products = () => {
             px: 6,
             display: "grid",
             justifyContent: "center",
-            gridTemplateColumns: mobile
+            gridTemplateColumns: isMobile
               ? "minmax(200px, 500px)"
               : "repeat(4,minmax(200px,1fr))",
-            gridTemplateRows: mobile ? "repeat(4,400px)" : "repeat(2,400px)",
+            gridTemplateRows: isMobile ? "repeat(4,400px)" : "repeat(2,400px)",
             columnGap: 3,
             rowGap: 4,
           }}

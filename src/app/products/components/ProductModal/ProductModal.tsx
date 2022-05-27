@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ButtonBase, Card, Dialog, IconButton } from "@mui/material";
+import { Card, Dialog, IconButton } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
 
 import ProductCardImage from "../ProductCard/ProductCardImage";
