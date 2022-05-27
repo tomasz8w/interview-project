@@ -1,11 +1,23 @@
 import React from "react";
 
-import { Box, Button, ButtonBase, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonBase,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { AppRoute } from "routing/AppRoute.enum";
+import login from "img/login.png";
 
 export const Login = () => {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box
       sx={{
@@ -13,8 +25,20 @@ export const Login = () => {
         backgroundColor: "background.paper",
         justifyContent: "center",
         height: "100vh",
+        width: "100vw",
       }}
     >
+      {!mobile && (
+        <Box
+          sx={{
+            flex: 1,
+            backgroundImage: `url(${login})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            display: "block",
+          }}
+        />
+      )}
       <Box
         sx={{
           display: "flex",
