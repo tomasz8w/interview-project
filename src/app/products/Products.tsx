@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Pagination, useMediaQuery, useTheme } from "@mui/material";
 
 import {
   Header,
@@ -42,6 +42,7 @@ export const Products = () => {
         </Box>
       )}
       <ProductModal isOpen={dialogOpen} close={() => setDialogOpen(false)} />
+      <Pagination count={8} sx={{ py: 6 }} boundaryCount={1} siblingCount={1} />
     </ProductWrapper>
   );
 };

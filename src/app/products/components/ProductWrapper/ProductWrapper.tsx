@@ -13,7 +13,8 @@ const ProductWrapper = ({ children }: Props) => {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
-        width: "100vw",
+        width: "100%",
+        alignItems: "center",
       }}
     >
       {children}
