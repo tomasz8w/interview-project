@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 import { AppRoute } from "routing/AppRoute.enum";
 import login from "img/login.png";
+import Logo from "app/common/components/Logo";
 
 export const Login = () => {
   const theme = useTheme();
@@ -35,7 +36,7 @@ export const Login = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           display: mobile ? "none" : "block",
-          maxWidth: "500px",
+          maxWidth: "600px",
         }}
       />
 
@@ -55,7 +56,7 @@ export const Login = () => {
           to={AppRoute.Home}
           sx={{ justifyContent: "left" }}
         >
-          <Typography variant="h2">join.tsh.io</Typography>
+          <Logo />
         </ButtonBase>
         <Box
           component="form"
@@ -87,7 +88,12 @@ export const Login = () => {
           >
             Log in
           </Button>
-          <Typography variant="caption">Forgot password?</Typography>
+          <Typography
+            variant="caption"
+            sx={{ textDecorationLine: "underline" }}
+          >
+            Forgot password?
+          </Typography>
         </Box>
       </Box>
     </Box>

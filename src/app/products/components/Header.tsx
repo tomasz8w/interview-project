@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 
 import { AppRoute } from "routing/AppRoute.enum";
+import Logo from "app/common/components/Logo";
 
 const Header = () => {
   const theme = useTheme();
@@ -38,9 +39,8 @@ const Header = () => {
           mx: "10%",
         }}
       >
-        <Typography sx={{ mr: "auto", flex: 1, p: 1 }} variant="h2">
-          join.tsh.io
-        </Typography>
+        <Logo sx={{ mr: "auto", flex: 1, p: 1 }} />
+
         <Box
           sx={{
             flex: 4,
