@@ -112,6 +112,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiInputAdornment: {
+      styleOverrides: {
+        root: {
+          color: "#1A1B1D",
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
