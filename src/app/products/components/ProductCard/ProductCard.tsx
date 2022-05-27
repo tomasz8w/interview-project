@@ -36,13 +36,15 @@ const ProductCard = () => {
           </Typography>
         </Box>
       </CardMedia>
-      <CardContent sx={{ flex: 1 }}>
+      <CardContent
+        sx={{ flex: 1, display: "flex", flexDirection: "column", pb: 1 }}
+      >
         <Typography variant="h6">Nike running shoes</Typography>
         <Typography variant="caption">
           Buying Used Electronic Test Equipment What S The Difference Between
           Used Refurbished Remarketed And Rebuilt
         </Typography>
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", mt: "auto" }}>
           <RatingStar />
         </Box>
       </CardContent>
