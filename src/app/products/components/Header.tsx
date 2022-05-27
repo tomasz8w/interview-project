@@ -38,7 +38,7 @@ const Header = () => {
           mx: "10%",
         }}
       >
-        <Typography sx={{ mr: "auto", flex: 1, p: 1 }} variant="h5">
+        <Typography sx={{ mr: "auto", flex: 1, p: 1 }} variant="h2">
           join.tsh.io
         </Typography>
         <Box
