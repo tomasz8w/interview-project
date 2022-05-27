@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 import {
@@ -7,12 +7,15 @@ import {
   EmptyListCard,
   ProductWrapper,
 } from "./components";
+import ProductModal from "./components/ProductModal";
 
 export const Products = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const empty = true;
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const empty = false;
 
   return (
     <ProductWrapper>
@@ -38,6 +41,7 @@ export const Products = () => {
           <ProductCard />
         </Box>
       )}
+      <ProductModal isOpen={dialogOpen} close={() => setDialogOpen(false)} />
     </ProductWrapper>
   );
 };
