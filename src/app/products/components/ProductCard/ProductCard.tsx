@@ -7,6 +7,8 @@ import ProductCardImage from "./ProductCardImage";
 import RatingStar from "./RatingStar";
 
 const ProductCard = () => {
+  const active = true;
+
   return (
     <Card sx={{ display: "flex", flexDirection: "column" }}>
       <ProductCardImage />
@@ -15,7 +17,7 @@ const ProductCard = () => {
         <RatingStar />
       </Box>
       <CardActions sx={{ mb: 2 }}>
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" fullWidth disabled={!active}>
           Show details
         </Button>
       </CardActions>

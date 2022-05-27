@@ -4,9 +4,16 @@ import { Box, CardMedia, Typography } from "@mui/material";
 
 import nike_image from "img/nike_shoes.png";
 
-const ProductCardImage = () => {
+type Props = {
+  active?: boolean;
+};
+
+const ProductCardImage = ({ active = true }: Props) => {
   return (
-    <CardMedia sx={{ height: "170px" }} image={nike_image}>
+    <CardMedia
+      sx={{ height: "170px", filter: active ? "unset" : "grayscale(100%)" }}
+      image={nike_image}
+    >
       <Box
         sx={{
           backgroundColor: "secondary.main",
