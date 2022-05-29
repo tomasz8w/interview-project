@@ -9,18 +9,25 @@ import {
 } from "./components";
 import ProductModal from "./components/ProductModal";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
+import { useProductsQuery } from "store/productsStore";
 
 export const Products = () => {
   const { isMobile } = useMediaQueryMobile();
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  const products = useProductsQuery({
+    limit: isMobile ? 4 : 8,
+    search: "powder",
+  }).data?.items;
+  console.log(products);
+
   const empty = false;
 
   return (
     <ProductWrapper>
       <Header />
-      {empty ? (
+      {products && products.length === 0 ? (
         <EmptyListCard />
       ) : (
         <Box
@@ -37,8 +44,10 @@ export const Products = () => {
             rowGap: 4,
           }}
         >
-          <ProductCard />
-          <ProductCard />
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
         </Box>
       )}
       <ProductModal isOpen={dialogOpen} close={() => setDialogOpen(false)} />

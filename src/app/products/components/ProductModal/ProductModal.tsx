@@ -24,8 +24,8 @@ const ProductModal = ({ isOpen, close }: Props) => {
           <CloseIcon />
         </IconButton>
 
-        <ProductCardImage />
-        <ProductCardDescription />
+        <ProductCardImage imageUrl="" promo={false} active={false} />
+        <ProductCardDescription title="" description="" />
       </Card>
     </Dialog>
   );
