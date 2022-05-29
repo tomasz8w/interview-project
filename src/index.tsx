@@ -7,13 +7,18 @@ import { AppProviders } from "providers/AppProviders";
 import { App } from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 import { theme } from "./themes";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <AppProviders>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </QueryClientProvider>
   </AppProviders>,
   document.getElementById("root")
 );
