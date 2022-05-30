@@ -7,26 +7,27 @@ import {
   EmptyListCard,
   ProductWrapper,
 } from "./components";
-import ProductModal from "./components/ProductModal";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 import { useProductsQuery } from "app/products/store/productsStore";
 
+import ProductModal from "./components/ProductModal";
+import { useProductSearchParameters } from "./context/searchContext";
+
 export const Products = () => {
   const { isMobile } = useMediaQueryMobile();
+  const {
+    context: { productSearchParameters },
+  } = useProductSearchParameters();
+
+  console.log(productSearchParameters);
 
   const [clickedProductId, setClickedProductId] = useState<number>();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [searchParameters, setSearchParameters] = useState({
-    search: "",
-    active: undefined,
-    promo: undefined,
-  });
 
   const products = useProductsQuery({
     limit: isMobile ? 4 : 8,
-    ...searchParameters,
+    ...productSearchParameters,
   }).data?.items;
-  console.log(products);
 
   const handleOpenModal = (productId: number) => {
     setClickedProductId(productId);
