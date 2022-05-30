@@ -9,7 +9,15 @@ import * as serviceWorker from "./serviceWorker";
 import { theme } from "./themes";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.render(
   <AppProviders>
