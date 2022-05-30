@@ -70,14 +70,11 @@ export const fetchProduct = async ({ productId }: FetchProductPayload) => {
   const queryString = `${baseUrl}/products/${productId}`;
 
   try {
-    const res = await axios({
-      url: queryString,
-      method: "get",
+    const res = await axios.get<Product>(queryString, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-
     return res.data;
   } catch (error) {
     console.log(error);

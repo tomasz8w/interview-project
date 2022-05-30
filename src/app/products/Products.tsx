@@ -9,20 +9,29 @@ import {
 } from "./components";
 import ProductModal from "./components/ProductModal";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
-import { useProductsQuery } from "store/productsStore";
+import { useProductsQuery } from "app/products/store/productsStore";
 
 export const Products = () => {
   const { isMobile } = useMediaQueryMobile();
 
+  const [clickedProductId, setClickedProductId] = useState<number>();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [searchParameters, setSearchParameters] = useState({
+    search: "",
+    active: undefined,
+    promo: undefined,
+  });
 
   const products = useProductsQuery({
     limit: isMobile ? 4 : 8,
-    search: "powder",
+    ...searchParameters,
   }).data?.items;
   console.log(products);
 
-  const empty = false;
+  const handleOpenModal = (productId: number) => {
+    setClickedProductId(productId);
+    setDialogOpen(true);
+  };
 
   return (
     <ProductWrapper>
@@ -46,11 +55,21 @@ export const Products = () => {
         >
           {products &&
             products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onButtonClick={handleOpenModal}
+              />
             ))}
         </Box>
       )}
-      <ProductModal isOpen={dialogOpen} close={() => setDialogOpen(false)} />
+      {clickedProductId && (
+        <ProductModal
+          productId={clickedProductId}
+          isOpen={dialogOpen}
+          close={() => setDialogOpen(false)}
+        />
+      )}
       <Pagination count={8} sx={{ py: 6 }} boundaryCount={1} siblingCount={1} />
     </ProductWrapper>
   );

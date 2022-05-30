@@ -9,9 +9,10 @@ import { Product } from "api/productsApi";
 
 type Props = {
   product: Product;
+  onButtonClick: (productId: number) => void;
 };
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product, onButtonClick }: Props) => {
   return (
     <Card sx={{ display: "flex", flexDirection: "column" }}>
       <ProductCardImage
@@ -27,7 +28,12 @@ const ProductCard = ({ product }: Props) => {
         <RatingStar starsCount={product.rating} />
       </Box>
       <CardActions sx={{ mb: 2 }}>
-        <Button variant="contained" fullWidth disabled={!product.active}>
+        <Button
+          variant="contained"
+          fullWidth
+          disabled={!product.active}
+          onClick={() => onButtonClick(product.id)}
+        >
           Show details
         </Button>
       </CardActions>
