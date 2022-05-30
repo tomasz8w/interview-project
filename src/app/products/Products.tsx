@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Pagination } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 import {
   Header,
@@ -10,6 +10,7 @@ import {
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 import { useProductsQuery } from "app/products/store/productsStore";
 
+import Pagination from "./components/Pagination";
 import ProductModal from "./components/ProductModal";
 import { useProductSearchParameters } from "./context/searchContext";
 
@@ -24,10 +25,12 @@ export const Products = () => {
   const [clickedProductId, setClickedProductId] = useState<number>();
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const products = useProductsQuery({
+  const productsQueryResult = useProductsQuery({
     limit: isMobile ? 4 : 8,
     ...productSearchParameters,
-  }).data?.items;
+  });
+
+  const products = productsQueryResult.data?.items;
 
   const handleOpenModal = (productId: number) => {
     setClickedProductId(productId);
@@ -37,6 +40,7 @@ export const Products = () => {
   return (
     <ProductWrapper>
       <Header />
+      {productsQueryResult.isLoading && <CircularProgress />}
       {products && products.length === 0 ? (
         <EmptyListCard />
       ) : (
@@ -71,7 +75,7 @@ export const Products = () => {
           close={() => setDialogOpen(false)}
         />
       )}
-      <Pagination count={8} sx={{ py: 6 }} boundaryCount={1} siblingCount={1} />
+      <Pagination />
     </ProductWrapper>
   );
 };
