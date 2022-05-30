@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Box,
@@ -14,6 +14,7 @@ import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 import { useProductSearchParameters } from "app/products/context/searchContext";
 
 const SearchBox = () => {
+  const [search, setSearch] = useState("");
   const { isMobile } = useMediaQueryMobile();
 
   const {
@@ -26,14 +27,16 @@ const SearchBox = () => {
   const handlePromoChange = (_event: any, checked: boolean) => {
     setProductSearchParameters((prev) => ({ ...prev, promo: checked }));
   };
-  const handleTextFieldChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setProductSearchParameters((prev) => ({
-      ...prev,
-      search: event.currentTarget.value,
-    }));
-  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setProductSearchParameters((prev) => ({
+        ...prev,
+        search,
+      }));
+    }, 800);
+    return () => clearTimeout(timeout);
+  }, [search]);
 
   return (
     <Box
@@ -51,6 +54,7 @@ const SearchBox = () => {
       <TextField
         size="small"
         label="Search"
+        value={search}
         fullWidth={isMobile}
         InputProps={{
           endAdornment: (
@@ -60,7 +64,7 @@ const SearchBox = () => {
           ),
         }}
         sx={{ minWidth: "250px" }}
-        onChange={handleTextFieldChange}
+        onChange={(event) => setSearch(event.currentTarget.value)}
       />
       <FormGroup row sx={{ flexWrap: "nowrap" }}>
         <FormControlLabel
