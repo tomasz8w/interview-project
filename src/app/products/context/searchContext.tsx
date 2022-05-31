@@ -4,6 +4,7 @@ type SearchParameters = {
   search?: string;
   active?: boolean;
   promo?: boolean;
+  page?: number;
 };
 
 type ProductSearchContext = {

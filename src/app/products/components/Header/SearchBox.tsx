@@ -22,10 +22,18 @@ const SearchBox = () => {
   } = useProductSearchParameters();
 
   const handleActiveChange = (_event: any, checked: boolean) => {
-    setProductSearchParameters((prev) => ({ ...prev, active: checked }));
+    setProductSearchParameters((prev) => ({
+      ...prev,
+      active: checked,
+      page: 1,
+    }));
   };
   const handlePromoChange = (_event: any, checked: boolean) => {
-    setProductSearchParameters((prev) => ({ ...prev, promo: checked }));
+    setProductSearchParameters((prev) => ({
+      ...prev,
+      promo: checked,
+      page: 1,
+    }));
   };
 
   useEffect(() => {
@@ -33,6 +41,7 @@ const SearchBox = () => {
       setProductSearchParameters((prev) => ({
         ...prev,
         search,
+        page: 1,
       }));
     }, 800);
     return () => clearTimeout(timeout);

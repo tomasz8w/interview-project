@@ -20,8 +20,6 @@ export const Products = () => {
     context: { productSearchParameters },
   } = useProductSearchParameters();
 
-  console.log(productSearchParameters);
-
   const [clickedProductId, setClickedProductId] = useState<number>();
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -75,7 +73,14 @@ export const Products = () => {
           close={() => setDialogOpen(false)}
         />
       )}
-      <Pagination />
+      {productsQueryResult.data && (
+        <Pagination
+          next={productsQueryResult.data.links.next}
+          previous={productsQueryResult.data.links.previous}
+          currentPage={productsQueryResult.data.meta.currentPage}
+          totalPages={productsQueryResult.data.meta.totalPages}
+        />
+      )}
     </ProductWrapper>
   );
 };
