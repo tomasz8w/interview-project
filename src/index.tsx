@@ -12,9 +12,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
+      staleTime:
+        process.env.NODE_ENV === "production" ? 1000 * 60 * 5 : Infinity,
+      refetchOnMount: process.env.NODE_ENV === "production" ? true : false,
+      refetchOnWindowFocus:
+        process.env.NODE_ENV === "production" ? true : false,
     },
   },
 });
