@@ -14,8 +14,8 @@ const PaginationItem = ({ caption, current, disabled, ...props }: Props) => {
     : "unset";
 
   return (
-    <ListItem>
-      <ButtonBase disabled={disabled} {...props}>
+    <ListItem sx={{ p: 0 }}>
+      <ButtonBase sx={{ px: 1, py: 2 }} disabled={disabled} {...props}>
         <Typography variant="body2" color={color}>
           {caption}
         </Typography>

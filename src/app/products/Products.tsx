@@ -29,6 +29,7 @@ export const Products = () => {
   });
 
   const products = productsQueryResult.data?.items;
+  const itemsOnPage = productsQueryResult.data?.meta.itemCount ?? 0;
 
   const handleOpenModal = (productId: number) => {
     setClickedProductId(productId);
@@ -51,7 +52,9 @@ export const Products = () => {
             gridTemplateColumns: isMobile
               ? "minmax(200px, 500px)"
               : "repeat(4,minmax(200px,1fr))",
-            gridTemplateRows: isMobile ? "repeat(4,400px)" : "repeat(2,400px)",
+            gridTemplateRows: isMobile
+              ? `repeat(${itemsOnPage},400px)`
+              : `repeat(${itemsOnPage > 4 ? 2 : 1},400px)`,
             columnGap: 3,
             rowGap: 4,
           }}
@@ -73,7 +76,7 @@ export const Products = () => {
           close={() => setDialogOpen(false)}
         />
       )}
-      {productsQueryResult.data && (
+      {productsQueryResult.data && products && products.length > 0 && (
         <Pagination
           next={productsQueryResult.data.links.next}
           previous={productsQueryResult.data.links.previous}
