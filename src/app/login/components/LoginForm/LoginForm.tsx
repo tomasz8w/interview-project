@@ -2,6 +2,7 @@ import React from "react";
 
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { useAuth } from "app/login/context/authContext";
 
 type Form = {
   username: string;
@@ -10,9 +11,10 @@ type Form = {
 
 const LoginForm = () => {
   const { control, handleSubmit } = useForm<Form>();
+  const { loginUser, getUser } = useAuth();
 
   const onSubmit: SubmitHandler<Form> = (data) => {
-    console.log(data);
+    loginUser(data);
   };
 
   return (

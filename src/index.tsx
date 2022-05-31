@@ -8,6 +8,7 @@ import { App } from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 import theme from "./themes";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { AuthProvider } from "app/login/context/authContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,12 +24,14 @@ const queryClient = new QueryClient({
 
 ReactDOM.render(
   <AppProviders>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </QueryClientProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   </AppProviders>,
   document.getElementById("root")
 );
