@@ -57,7 +57,7 @@ const theme = createTheme({
     },
     action: {
       hover: "#2140E8",
-      disabled: "#ffffff",
+      disabled: "#9194A5",
       disabledBackground: "#9194A5",
     },
     text: {
@@ -90,6 +90,9 @@ theme.components = {
         boxShadow: "none",
         ":hover": {
           boxShadow: "none",
+        },
+        ":disabled": {
+          color: theme.palette.common.white,
         },
       },
       sizeMedium: { height: "38px" },
