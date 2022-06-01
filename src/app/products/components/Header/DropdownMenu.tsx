@@ -9,8 +9,21 @@ type Props = {
 
 const DropdownMenu = (props: MenuProps) => {
   return (
-    <Menu {...props}>
-      <MenuItem>Log out</MenuItem>
+    <Menu
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "right",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      sx={{
+        li: { width: "20ch" },
+      }}
+      {...props}
+    >
+      <MenuItem>Logout</MenuItem>
     </Menu>
   );
 };

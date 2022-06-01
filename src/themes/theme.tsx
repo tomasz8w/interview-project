@@ -76,6 +76,20 @@ const theme = createTheme({
 });
 
 theme.components = {
+  MuiMenu: {
+    styleOverrides: {
+      paper: {
+        boxShadow: "0px 8px 32px rgba(17, 18, 20, 0.158514) !important",
+        borderRadius: "4px !important",
+      },
+      list: {
+        padding: 0,
+        ":hover": {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+  },
   MuiPaper: {
     styleOverrides: {
       root: {
@@ -84,6 +98,7 @@ theme.components = {
       },
     },
   },
+
   MuiButton: {
     styleOverrides: {
       root: {
