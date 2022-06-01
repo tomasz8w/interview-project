@@ -1,10 +1,11 @@
+import { useQuery } from "react-query";
+
 import {
   fetchProduct,
   FetchProductPayload,
   fetchProducts,
   FetchProductsPayload,
-} from "api/productsApi";
-import { useQuery } from "react-query";
+} from "app/products/services/productsService";
 
 const queryKeys = {
   all: ["products"] as const,

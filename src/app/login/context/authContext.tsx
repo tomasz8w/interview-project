@@ -1,7 +1,11 @@
 import { useState, createContext, useContext, FC, useEffect } from "react";
-import { useJwt } from "react-jwt";
+import { isExpired } from "react-jwt";
 
-import { login, LoginPayload, LoginResponse, User } from "api/loginApi";
+import {
+  login,
+  LoginPayload,
+  LoginResponse,
+} from "app/login/services/loginService";
 
 type Auth = LoginResponse;
 
@@ -50,8 +54,8 @@ export const useAuth = () => {
 
   const isAuthenticated = () => {
     if (auth && auth.access_token) {
-      const { decodedToken, isExpired } = useJwt(auth.access_token);
-      if (!isExpired) return true;
+      const isTokenExpired = isExpired(auth.access_token);
+      if (!isTokenExpired) return true;
     }
     return false;
   };

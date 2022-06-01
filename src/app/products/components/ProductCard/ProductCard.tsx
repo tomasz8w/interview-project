@@ -2,10 +2,11 @@ import React from "react";
 
 import { Box, Button, Card, CardActions } from "@mui/material";
 
+import { Product } from "app/products/services/productsService";
+
 import ProductCardDescription from "./ProductCardDescription";
 import ProductCardImage from "./ProductCardImage";
 import RatingStar from "./RatingStar";
-import { Product } from "api/productsApi";
 
 type Props = {
   product: Product;
@@ -34,7 +35,7 @@ const ProductCard = ({ product, onButtonClick }: Props) => {
           disabled={!product.active}
           onClick={() => onButtonClick(product.id)}
         >
-          Show details
+          {product.active ? "Show details" : "Unavailable"}
         </Button>
       </CardActions>
     </Card>

@@ -31,8 +31,6 @@ const Pagination = ({ next, previous, currentPage, totalPages }: Props) => {
     if (isNext) changePage(currentPage + 1);
   };
 
-  console.log(paginationIndexes);
-
   return (
     <List sx={{ display: "flex" }}>
       <PaginationItem
