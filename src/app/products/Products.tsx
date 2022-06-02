@@ -1,18 +1,11 @@
-import React, { useState } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import React from "react";
+import { CircularProgress, styled } from "@mui/material";
 
-import {
-  Header,
-  ProductCard,
-  EmptyListCard,
-  ProductWrapper,
-} from "./components";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
-import { useProductsQuery } from "app/products/store/productsStore";
 
-import Pagination from "./components/Pagination";
-import ProductModal from "./components/ProductModal";
+import { Header, EmptyListCard, ProductsList, Pagination } from "./components";
 import { useProductSearchParameters } from "./context/searchContext";
+import { useProductsQuery } from "./store/productsStore";
 
 export const Products = () => {
   const { isMobile } = useMediaQueryMobile();
@@ -20,62 +13,25 @@ export const Products = () => {
     context: { productSearchParameters },
   } = useProductSearchParameters();
 
-  const [clickedProductId, setClickedProductId] = useState<number>();
-  const [dialogOpen, setDialogOpen] = useState(false);
-
   const productsQueryResult = useProductsQuery({
     limit: isMobile ? 4 : 8,
     ...productSearchParameters,
   });
 
   const products = productsQueryResult.data?.items;
-  const itemsOnPage = productsQueryResult.data?.meta.itemCount ?? 0;
 
-  const handleOpenModal = (productId: number) => {
-    setClickedProductId(productId);
-    setDialogOpen(true);
-  };
+  const emptyList =
+    !productsQueryResult.isLoading &&
+    (products === undefined || products.length === 0);
 
   return (
     <ProductWrapper>
       <Header />
-      {productsQueryResult.isLoading && <CircularProgress />}
-      {products && products.length === 0 ? (
-        <EmptyListCard />
-      ) : (
-        <Box
-          sx={{
-            py: 6,
-            px: 6,
-            display: "grid",
-            justifyContent: "center",
-            gridTemplateColumns: isMobile
-              ? "minmax(200px, 500px)"
-              : "repeat(4,minmax(200px,1fr))",
-            gridTemplateRows: isMobile
-              ? `repeat(${itemsOnPage},400px)`
-              : `repeat(${itemsOnPage > 4 ? 2 : 1},400px)`,
-            columnGap: 3,
-            rowGap: 4,
-          }}
-        >
-          {products &&
-            products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onButtonClick={handleOpenModal}
-              />
-            ))}
-        </Box>
+      {productsQueryResult.isLoading && (
+        <CircularProgress sx={{ justifyContent: "center" }} />
       )}
-      {clickedProductId && (
-        <ProductModal
-          productId={clickedProductId}
-          isOpen={dialogOpen}
-          close={() => setDialogOpen(false)}
-        />
-      )}
+      {emptyList ? <EmptyListCard /> : <ProductsList products={products} />}
+
       {productsQueryResult.data && products && products.length > 0 && (
         <Pagination
           next={productsQueryResult.data.links.next}
@@ -87,3 +43,11 @@ export const Products = () => {
     </ProductWrapper>
   );
 };
+
+const ProductWrapper = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  height: "100vh",
+  width: "100%",
+  alignItems: "center",
+});

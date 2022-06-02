@@ -14,14 +14,13 @@ const EmptyListCard = () => {
         display: "flex",
         justifyContent: "center",
         width: "100%",
-        flex: 1,
         mt: "10vh",
       }}
     >
       <Card
         sx={{
+          flexBasis: isMobile ? "80%" : "50%",
           height: "344px",
-          minWidth: isMobile ? "80%" : "50%",
         }}
       >
         <CardContent

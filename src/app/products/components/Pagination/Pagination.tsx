@@ -1,9 +1,11 @@
 import React from "react";
 
-import { List, Typography } from "@mui/material";
+import { List } from "@mui/material";
+
+import { useProductSearchParameters } from "app/products/context/searchContext";
+
 import usePagination from "./usePagination";
 import PaginationItem from "./PaginationItem";
-import { useProductSearchParameters } from "app/products/context/searchContext";
 
 type Props = {
   next: string;
