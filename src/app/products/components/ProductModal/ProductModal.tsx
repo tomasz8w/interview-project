@@ -34,7 +34,6 @@ const ProductModal = ({ isOpen, close, productId }: Props) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            height: "30vh",
             minWidth: "30vw",
           }}
         >
@@ -49,6 +48,7 @@ const ProductModal = ({ isOpen, close, productId }: Props) => {
             imageUrl={product.image}
             promo={product.promo}
             active={product.active}
+            modal
           />
           <ProductCardDescription
             title={product.name}

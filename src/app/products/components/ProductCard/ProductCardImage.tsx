@@ -6,12 +6,16 @@ type Props = {
   imageUrl: string;
   active: boolean;
   promo: boolean;
+  modal?: boolean;
 };
 
-const ProductCardImage = ({ imageUrl, active, promo }: Props) => {
+const ProductCardImage = ({ imageUrl, active, promo, modal }: Props) => {
   return (
     <CardMedia
-      sx={{ height: "170px", filter: active ? "unset" : "grayscale(100%)" }}
+      sx={{
+        height: modal ? "350px" : "170px",
+        filter: active ? "unset" : "grayscale(100%)",
+      }}
       image={imageUrl}
     >
       {promo && (
