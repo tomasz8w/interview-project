@@ -57,6 +57,7 @@ export const useAuth = () => {
       const isTokenExpired = isExpired(auth.access_token);
       if (!isTokenExpired) return true;
     }
+    setAuth(undefined);
     return false;
   };
 

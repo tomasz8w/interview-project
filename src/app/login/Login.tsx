@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, ButtonBase } from "@mui/material";
+import { Box, ButtonBase, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { AppRoute } from "routing/AppRoute.enum";
@@ -8,7 +8,7 @@ import login from "img/login.png";
 import Logo from "app/common/components/Logo";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 
-import { LoginForm, LoginWrapper } from "./components";
+import LoginForm from "./components/LoginForm";
 
 export const Login = () => {
   const { isMobile } = useMediaQueryMobile();
@@ -50,3 +50,10 @@ export const Login = () => {
     </LoginWrapper>
   );
 };
+
+const LoginWrapper = styled("div")({
+  display: "flex",
+  backgroundColor: "background.paper",
+  justifyContent: "center",
+  height: "100vh",
+});
