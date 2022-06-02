@@ -5,6 +5,7 @@ import {
   FetchProductPayload,
   fetchProducts,
   FetchProductsPayload,
+  ProductsResponse,
 } from "app/products/services/productsService";
 
 const queryKeys = {
@@ -16,7 +17,9 @@ const queryKeys = {
 };
 
 export const useProductsQuery = (payload: FetchProductsPayload) =>
-  useQuery(queryKeys.products(payload), () => fetchProducts(payload));
+  useQuery<ProductsResponse, Error>(queryKeys.products(payload), () =>
+    fetchProducts(payload)
+  );
 
 export const useProductQuery = (payload: FetchProductPayload) =>
   useQuery(queryKeys.product(payload.productId), () => fetchProduct(payload));

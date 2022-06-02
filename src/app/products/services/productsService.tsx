@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const baseUrl = "https://join-tsh-api-staging.herokuapp.com";
 
@@ -24,7 +24,7 @@ export type Product = {
   rating: number;
 };
 
-type ProductsResponse = {
+export type ProductsResponse = {
   items: Product[];
   links: {
     first: string;
@@ -61,8 +61,9 @@ export const fetchProducts = async ({
     });
     return res.data;
   } catch (error) {
-    console.log(error);
-    throw error;
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.message);
+    } else return Promise.reject("Unknown error");
   }
 };
 
@@ -77,7 +78,8 @@ export const fetchProduct = async ({ productId }: FetchProductPayload) => {
     });
     return res.data;
   } catch (error) {
-    console.log(error);
-    throw error;
+    if (axios.isAxiosError(error)) {
+      return Promise.reject(error.message);
+    } else return Promise.reject("Unknown error");
   }
 };

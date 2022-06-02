@@ -42,7 +42,7 @@ export const Products = () => {
       )}
       <Snackbar open={productsQueryResult.isError} autoHideDuration={5000}>
         <Alert severity="error" sx={{ width: "100%" }}>
-          Error occured.
+          {productsQueryResult.error}
         </Alert>
       </Snackbar>
     </ProductWrapper>
