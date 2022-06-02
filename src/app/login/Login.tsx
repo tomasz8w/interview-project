@@ -1,9 +1,7 @@
 import React from "react";
 
-import { Box, ButtonBase, styled } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, styled } from "@mui/material";
 
-import { AppRoute } from "routing/AppRoute.enum";
 import login from "img/login.png";
 import Logo from "app/common/components/Logo";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
@@ -38,13 +36,7 @@ export const Login = () => {
           py: 5,
         }}
       >
-        <ButtonBase
-          component={Link}
-          to={AppRoute.Home}
-          sx={{ justifyContent: "left" }}
-        >
-          <Logo />
-        </ButtonBase>
+        <Logo />
         <LoginForm />
       </Box>
     </LoginWrapper>

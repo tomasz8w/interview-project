@@ -13,6 +13,7 @@ import { AuthProvider } from "app/login/context/authContext";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      retry: false,
       staleTime:
         process.env.NODE_ENV === "production" ? 1000 * 60 * 5 : Infinity,
       refetchOnMount: process.env.NODE_ENV === "production" ? true : false,

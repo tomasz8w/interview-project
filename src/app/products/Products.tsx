@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, CircularProgress, Snackbar, styled } from "@mui/material";
+import { Alert, Box, CircularProgress, Snackbar, styled } from "@mui/material";
 
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 
@@ -28,7 +28,9 @@ export const Products = () => {
     <ProductWrapper>
       <Header />
       {productsQueryResult.isLoading && (
-        <CircularProgress sx={{ justifyContent: "center" }} />
+        <Box sx={{ flex: 1, alignItems: "center", display: "flex" }}>
+          <CircularProgress sx={{ justifyContent: "center" }} />
+        </Box>
       )}
       {emptyList ? <EmptyListCard /> : <ProductsList products={products} />}
 
