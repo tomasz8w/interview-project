@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, FC, useMemo } from "react";
+import { createContext, FC, useContext, useState } from "react";
 
 type SearchParameters = {
   search?: string;

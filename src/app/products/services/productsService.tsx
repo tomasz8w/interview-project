@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const baseUrl = "https://join-tsh-api-staging.herokuapp.com";
 
