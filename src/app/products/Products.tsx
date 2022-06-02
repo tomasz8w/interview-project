@@ -1,5 +1,5 @@
 import React from "react";
-import { CircularProgress, styled } from "@mui/material";
+import { Alert, CircularProgress, Snackbar, styled } from "@mui/material";
 
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 
@@ -40,6 +40,11 @@ export const Products = () => {
           totalPages={productsQueryResult.data.meta.totalPages}
         />
       )}
+      <Snackbar open={productsQueryResult.isError} autoHideDuration={5000}>
+        <Alert severity="error" sx={{ width: "100%" }}>
+          Error occured.
+        </Alert>
+      </Snackbar>
     </ProductWrapper>
   );
 };

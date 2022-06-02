@@ -41,15 +41,14 @@ const Pagination = ({ next, previous, currentPage, totalPages }: Props) => {
         onClick={handlePrevious}
       />
       {paginationIndexes.map((item, index) => (
-        <>
+        <React.Fragment key={index}>
           <PaginationItem
-            key={index}
             current={currentPage === item}
             caption={item.toString()}
             onClick={() => changePage(item)}
           />
           {totalPages > 6 && index === 2 && <PaginationItem caption="..." />}
-        </>
+        </React.Fragment>
       ))}
       <PaginationItem caption="Next" disabled={!isNext} onClick={handleNext} />
     </List>
