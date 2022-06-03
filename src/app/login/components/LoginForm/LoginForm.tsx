@@ -14,8 +14,8 @@ const LoginForm = () => {
   const { loginUser, getAuthError } = useAuth();
 
   const authError = getAuthError();
-  const onSubmit: SubmitHandler<Form> = async (data) => {
-    await loginUser(data);
+  const onSubmit: SubmitHandler<Form> = (data) => {
+    loginUser(data);
   };
 
   return (

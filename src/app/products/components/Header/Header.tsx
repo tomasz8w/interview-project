@@ -69,6 +69,7 @@ const Header = () => {
           <DropdownMenu
             anchorEl={menuAnchorEl}
             open={menuOpen}
+            close={handleMenuClose}
             onClose={handleMenuClose}
           />
         </Box>

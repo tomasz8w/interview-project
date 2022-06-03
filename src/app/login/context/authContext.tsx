@@ -31,13 +31,11 @@ type AuthContext = {
 
 const AuthContext = createContext<AuthContext | undefined>(undefined);
 
-const getSavedAuth = <TState,>(key: string) => {
+const getSavedAuth = (key: string) => {
   const localStorageContent = localStorage.getItem(key);
 
-  if (localStorageContent)
-    return {
-      ...JSON.parse(localStorageContent),
-    };
+  if (localStorageContent) return JSON.parse(localStorageContent);
+
   return undefined;
 };
 
@@ -48,7 +46,7 @@ export const AuthProvider: FC = ({ children }) => {
   const value = { auth, setAuth, error, setError };
 
   useEffect(() => {
-    setAuth(getSavedAuth<Auth | undefined>("auth"));
+    setAuth(getSavedAuth("auth"));
   }, []);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -74,12 +72,16 @@ export const useAuth = () => {
     }
   };
 
+  const logoutUser = () => {
+    setAuth(undefined);
+  };
+
   const isAuthenticated = () => {
     if (auth && auth.access_token) {
       const isTokenExpired = isExpired(auth.access_token);
       if (!isTokenExpired) return true;
     }
-    setAuth(undefined);
+    () => setAuth(undefined);
     return false;
   };
 
@@ -91,5 +93,5 @@ export const useAuth = () => {
     return auth?.user;
   };
 
-  return { loginUser, getUser, isAuthenticated, getAuthError };
+  return { loginUser, getUser, isAuthenticated, getAuthError, logoutUser };
 };

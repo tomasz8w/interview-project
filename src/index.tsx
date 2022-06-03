@@ -24,16 +24,16 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.render(
-  <AppProviders>
-    <AuthProvider>
+  <AuthProvider>
+    <AppProviders>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <App />
         </ThemeProvider>
       </QueryClientProvider>
-    </AuthProvider>
-  </AppProviders>,
+    </AppProviders>
+  </AuthProvider>,
   document.getElementById("root")
 );
 

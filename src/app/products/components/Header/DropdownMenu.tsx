@@ -2,7 +2,20 @@ import React from "react";
 
 import { Menu, MenuItem, MenuProps } from "@mui/material";
 
-const DropdownMenu = (props: MenuProps) => {
+import { useAuth } from "app/login/context/authContext";
+
+type Props = MenuProps & {
+  close: () => void;
+};
+
+const DropdownMenu = ({ close, ...rest }: Props) => {
+  const { logoutUser } = useAuth();
+
+  const handleLogout = () => {
+    logoutUser();
+    close();
+  };
+
   return (
     <Menu
       anchorOrigin={{
@@ -16,9 +29,9 @@ const DropdownMenu = (props: MenuProps) => {
       sx={{
         li: { width: "20ch" },
       }}
-      {...props}
+      {...rest}
     >
-      <MenuItem>Logout</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 };
