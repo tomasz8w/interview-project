@@ -7,22 +7,26 @@ const api = axios.create({
   },
 });
 
-const request = async <T,>(
+const request = async <TResponse, TPayload>(
   queryString: string,
   method: Method,
-  payload?: T
+  payload?: TPayload
 ) => {
   try {
-    const req = await api.request({
+    const res = await api.request<TResponse>({
       url: queryString,
       method,
-      params: payload,
+      data: payload,
     });
-    return req.data;
+    return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return Promise.reject(error.message);
-    } else return Promise.reject("Unknown error");
+      let errorMessage;
+      if (error.response && error.response.statusText !== "") {
+        errorMessage = error.response.statusText;
+      } else errorMessage = error.message;
+      throw new Error(errorMessage);
+    } else throw new Error("Unexpected error");
   }
 };
 

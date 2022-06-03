@@ -5,8 +5,18 @@ export type LoginPayload = {
   password: string;
 };
 
-export const login = async (payload: LoginPayload) => {
+export const login = async <TResponse,>(payload: LoginPayload) => {
   const queryString = `/users/login`;
-
-  return await request(queryString, "POST", payload);
+  try {
+    const res = await request<TResponse, LoginPayload>(
+      queryString,
+      "POST",
+      payload
+    );
+    return res;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else throw new Error("Unexpected error");
+  }
 };

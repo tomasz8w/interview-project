@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { useAuth } from "app/login/context/authContext";
 
 type Form = {
@@ -11,10 +11,11 @@ type Form = {
 
 const LoginForm = () => {
   const { control, handleSubmit } = useForm<Form>();
-  const { loginUser } = useAuth();
+  const { loginUser, getAuthError } = useAuth();
 
-  const onSubmit: SubmitHandler<Form> = (data) => {
-    loginUser(data);
+  const authError = getAuthError();
+  const onSubmit: SubmitHandler<Form> = async (data) => {
+    await loginUser(data);
   };
 
   return (
@@ -77,6 +78,11 @@ const LoginForm = () => {
       <Typography variant="caption" sx={{ textDecorationLine: "underline" }}>
         Forgot password?
       </Typography>
+      {!!authError && (
+        <Alert severity="error" sx={{ width: "100%" }}>
+          {authError}
+        </Alert>
+      )}
     </Box>
   );
 };

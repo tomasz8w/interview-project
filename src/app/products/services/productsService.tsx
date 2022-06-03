@@ -12,7 +12,7 @@ export type FetchProductPayload = {
   productId: number;
 };
 
-export const fetchProducts = async ({
+export const fetchProducts = <TResponse,>({
   limit,
   search,
   page = 1,
@@ -24,11 +24,13 @@ export const fetchProducts = async ({
     .concat(active ? "&active=true" : "")
     .concat(search ? `&search=${search}` : "");
 
-  return await request(queryString, "GET");
+  return request<TResponse, undefined>(queryString, "GET");
 };
 
-export const fetchProduct = async ({ productId }: FetchProductPayload) => {
+export const fetchProduct = <TResponse,>({
+  productId,
+}: FetchProductPayload) => {
   const queryString = `/products/${productId}`;
 
-  return await request(queryString, "GET");
+  return request<TResponse, undefined>(queryString, "GET");
 };

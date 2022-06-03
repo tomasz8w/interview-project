@@ -35,8 +35,10 @@ const queryKeys = {
 
 export const useProductsQuery = (payload: FetchProductsPayload) =>
   useQuery<ProductsResponse, Error>(queryKeys.products(payload), () =>
-    fetchProducts(payload)
+    fetchProducts<ProductsResponse>(payload)
   );
 
 export const useProductQuery = (payload: FetchProductPayload) =>
-  useQuery(queryKeys.product(payload.productId), () => fetchProduct(payload));
+  useQuery(queryKeys.product(payload.productId), () =>
+    fetchProduct<Product>(payload)
+  );
