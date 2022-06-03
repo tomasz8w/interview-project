@@ -5,8 +5,25 @@ import {
   FetchProductPayload,
   fetchProducts,
   FetchProductsPayload,
-  ProductsResponse,
 } from "app/products/services/productsService";
+import { Product } from "app/products/models/Product";
+
+export type ProductsResponse = {
+  items: Product[];
+  links: {
+    first: string;
+    last: string;
+    next: string;
+    previous: string;
+  };
+  meta: {
+    currentPage: number;
+    itemCount: number;
+    itemsPerPage: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};
 
 const queryKeys = {
   all: ["products"] as const,

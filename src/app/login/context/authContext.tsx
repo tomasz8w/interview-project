@@ -1,17 +1,23 @@
 import { useState, createContext, useContext, FC, useEffect } from "react";
 import { isExpired } from "react-jwt";
 
-import {
-  login,
-  LoginPayload,
-  LoginResponse,
-} from "app/login/services/loginService";
+import { login, LoginPayload } from "app/login/services/loginService";
 
-type Auth = LoginResponse;
+type User = {
+  id: number;
+  username: string;
+  avatar: string;
+};
+
+type Auth = {
+  user: User;
+  expiresIn: string;
+  access_token: string;
+};
 
 type AuthContext = {
   auth: Auth | undefined;
-  setAuth: React.Dispatch<React.SetStateAction<LoginResponse | undefined>>;
+  setAuth: React.Dispatch<React.SetStateAction<Auth | undefined>>;
 };
 
 const AuthContext = createContext<AuthContext | undefined>(undefined);

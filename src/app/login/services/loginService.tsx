@@ -1,39 +1,12 @@
-import axios from "axios";
-
-const baseUrl = "https://join-tsh-api-staging.herokuapp.com";
+import request from "services/apiService";
 
 export type LoginPayload = {
   username: string;
   password: string;
 };
 
-export type User = {
-  id: number;
-  username: string;
-  avatar: string;
-};
+export const login = async (payload: LoginPayload) => {
+  const queryString = `/users/login`;
 
-export type LoginResponse = {
-  user: User;
-  expiresIn: string;
-  access_token: string;
-};
-
-export const login = async ({ username, password }: LoginPayload) => {
-  const queryString = `${baseUrl}/users/login`;
-
-  try {
-    const res = await axios.post<LoginResponse>(queryString, {
-      username,
-      password,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    return res.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  return await request(queryString, "POST", payload);
 };

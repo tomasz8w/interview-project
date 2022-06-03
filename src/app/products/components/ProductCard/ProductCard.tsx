@@ -2,7 +2,7 @@ import React from "react";
 
 import { Box, Button, Card, CardActions } from "@mui/material";
 
-import { Product } from "app/products/services/productsService";
+import { Product } from "app/products/models/Product";
 
 import ProductCardDescription from "./ProductCardDescription";
 import ProductCardImage from "./ProductCardImage";

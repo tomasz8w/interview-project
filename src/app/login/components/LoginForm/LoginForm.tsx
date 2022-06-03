@@ -11,7 +11,7 @@ type Form = {
 
 const LoginForm = () => {
   const { control, handleSubmit } = useForm<Form>();
-  const { loginUser, getUser } = useAuth();
+  const { loginUser } = useAuth();
 
   const onSubmit: SubmitHandler<Form> = (data) => {
     loginUser(data);

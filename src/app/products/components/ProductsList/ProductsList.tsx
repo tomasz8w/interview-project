@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Box } from "@mui/material";
 
-import { Product } from "app/products/services/productsService";
+import { Product } from "app/products/models/Product";
 import useMediaQueryMobile from "app/common/hooks/useMediaQueryMobile";
 
 import ProductCard from "../ProductCard";
