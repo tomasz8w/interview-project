@@ -1,39 +1,16 @@
+# Zadanie rekrutacyjne
+
+## Wymagania funkcjonalne
+
+- [x] Strona główna
+- [ ] Testy jednostkowe / E2E
+- [x] Ekran logowania
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and modified by TSH team for the recruit process.
-
-## Quick Start
-
-To start the development:
-
-```
-mkdir new-project
-cd new-project/
-git clone git@github.com:TheSoftwareHouse/react-interview-starter-ts.git .
-rm -r .git
-npm install
-cd e2e
-npm install
-cd ..
-cp .env.dist .env
-cp .env.e2e.dist ./e2e/.env
-```
-
-where `new-project` is your desired folder.
-
-## E2E
-
-For E2E testing we are using the [Cypress](https://www.cypress.io/) framework. If you don't need it just remove e2e directory.
 
 ## Available Scripts
 
 In the project directory, you can run:
-
-### `e2e:run`
-
-Runs Cypress E2E tests in a headless mode (the browser window is not visible)
-
-### `e2e:open`
-
-Opens the Cypress UI, allowing to run and watch E2E tests
 
 ### `npm start`
 
@@ -42,16 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run coverage`
-
-Launches the test runner in the coverage report generation mode.<br />
-See [this](https://create-react-app.dev/docs/running-tests/#coverage-reporting) section for more information.
 
 ### `npm run build`
 
