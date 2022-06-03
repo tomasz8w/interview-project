@@ -1,10 +1,14 @@
 # Zadanie rekrutacyjne
 
+Aplikacja live: [Link](https://tsh-interview-project.netlify.app/)
+
 ## Wymagania funkcjonalne
 
 - [x] Strona główna
 - [ ] Testy jednostkowe / E2E
 - [x] Ekran logowania
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and modified by TSH team for the recruit process.
 
